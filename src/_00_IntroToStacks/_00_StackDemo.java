@@ -48,8 +48,8 @@ public class _00_StackDemo {
         flavors.push("Apple");
         flavors.push("Vanilla");
         flavors.push("Mango");
-
-        /*
+        
+        /* 
          * Since Mango was the last one pushed, it will be the first one popped.
          * The pop() method reduces the size of the Stack by 1
          */

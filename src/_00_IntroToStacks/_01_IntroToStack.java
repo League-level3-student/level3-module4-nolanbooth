@@ -15,7 +15,7 @@ public class _01_IntroToStack {
 		for (int i = 0; i < 100; i++) {
 			double doubel = rand.nextDouble() * 100;
 			doubles.push(doubel);
-			// System.out.println(doubel);
+			
 		}
 
 		// 3. Ask the user to enter in two numbers between 0 and 100, inclusive.
@@ -41,7 +41,7 @@ public class _01_IntroToStack {
 			lowBound = stringThingOne;
 			hiBound = stringThingTwo;
 		}
-
+		
 		System.out.println("low: " + lowBound + "   hi: " + hiBound);
 
 		bill: for (int i = 0; i < 100; i++) {
