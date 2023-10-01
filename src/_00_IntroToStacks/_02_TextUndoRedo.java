@@ -84,7 +84,10 @@ public class _02_TextUndoRedo implements KeyListener, ActionListener {
 		
 		}if(key == 8) {
 			//find out how to delete the last text added to text
-			
+			String temp = text.substring(0, text.length()-1);
+			System.out.println(temp);
+			text = temp;
+			label.setText(text);
 			
 		}
 	}
