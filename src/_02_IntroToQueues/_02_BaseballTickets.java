@@ -34,40 +34,49 @@ import java.util.ArrayDeque;
 
 public class _02_BaseballTickets {
 
-    public static int calculateWaitTime( ArrayDeque<Integer> ticketsQueue, int position ) {
-        int minutes = 0;
-        int totalLength = 20;
-        for(int i = 0; i < ticketsQueue.size(); i++) {
-        	totalLength = totalLength + ticketsQueue.peek();
-        }
-    	//5 will be a placeholder variable
-    	for(int i = 0; i < 5; i++) {
-        	//cycle start
-    		
-    		if(position == 0) {
-    			position = ticketsQueue.size()-1;
-    		}else {
-    			position--;
-    		}
-    		//position has been moved
-    		
-    		int number = ticketsQueue.remove()-1;
-    		
-    		minutes++;
-        	if(number != 0) {
-        		ticketsQueue.add(number);
-        	}if(number == 0 && position ==0) {
-        		return minutes;
-        	}
-        	
-        }
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-        return -1;
-    }
+	public static int calculateWaitTime(ArrayDeque<Integer> ticketsQueue, int position) {
+		int minutes = 0;
+		int totalLength = 18;
+		int number = 0;
+
+		// minutes is the total minutes
+		// totalLength is the total length of queue
+		// number is the value of the current position
+
+		// for(int i = 0; i < ticketsQueue.size(); i++) {
+		// totalLength = totalLength + ticketsQueue.peek();
+		// }
+		// not sure what that is doing
+		System.out.println("position = " + position);
+
+		// 5 will be a placeholder variable
+		for (int i = 0; i < 5; i++) {
+			// cycle start
+
+			if (position == 0) {
+				position = ticketsQueue.size() - 1;
+
+			} else {
+				position--;
+			}
+			// System.out.println(position);
+
+			// position has been moved
+			minutes++;
+			number = ticketsQueue.remove() - 1;
+			System.out.println("value of ticket number thing: " + number);
+			// System.out.println(number);
+
+			if (number != 0) {
+				ticketsQueue.add(number);
+			}
+			if (number == 0) {
+				System.out.println("final waiting time" + minutes);
+				return minutes;
+			}
+
+		}
+
+		return -1;
+	}
 }
