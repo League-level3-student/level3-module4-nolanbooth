@@ -35,48 +35,54 @@ import java.util.ArrayDeque;
 public class _02_BaseballTickets {
 
 	public static int calculateWaitTime(ArrayDeque<Integer> ticketsQueue, int position) {
+		// [2, 5, 3, 6, 4]
+		// [1, 5, 3, 6, 4]
+		// [5, 3, 6, 4, 1]
+		// decrease first value by one
+		// remove it from the list
+		// add the same value to the back of the list (maybe use temporary variable)
+		int pos = position;
 		int minutes = 0;
-		int totalLength = 18;
-		int number = 0;
+		// one cycle:
 
-		// minutes is the total minutes
-		// totalLength is the total length of queue
-		// number is the value of the current position
+		while (true) {
+			if (pos == 0) {
+				// if position is equal to 0 of our ticket guy
+				if (ticketsQueue.peek() != 1) {
+					// if the position is 0, and value is not 1, then set pos equal to ticketsqueue
+					// size -1
+					int temp = ticketsQueue.remove() - 1;
+					ticketsQueue.add(temp);
+					minutes++;
+					pos = ticketsQueue.size() - 1;
 
-		// for(int i = 0; i < ticketsQueue.size(); i++) {
-		// totalLength = totalLength + ticketsQueue.peek();
-		// }
-		// not sure what that is doing
-		System.out.println("position = " + position);
+				} else if (ticketsQueue.peek() == 1) {
+					// if position is 0, and value is 1, then return minutes
+					ticketsQueue.remove();
+					minutes++;
+					return minutes;
+				}
+			} else if (pos != 0) {
+				// if ticket guy is not in the first position
+				if (ticketsQueue.peek() != 1) {
+					// if the guy at the front still needs a few more tickets, send him to back,
+					// subtract number, and add minutes, subtract pos
+					int temp = ticketsQueue.remove() - 1;
+					ticketsQueue.add(temp);
+					pos--;
+					minutes++;
+				} else if (ticketsQueue.peek() == 1) {
+					// if position is not 0, and our guy isn't at the front, but the guy at front
+					// has 1 ticket, delete him, add minute, sub position
+					ticketsQueue.remove();
+					minutes++;
+					pos--;
 
-		// 5 will be a placeholder variable
-		for (int i = 0; i < 5; i++) {
-			// cycle start
+				}
 
-			if (position == 0) {
-				position = ticketsQueue.size() - 1;
-
-			} else {
-				position--;
 			}
-			// System.out.println(position);
-
-			// position has been moved
-			minutes++;
-			number = ticketsQueue.remove() - 1;
-			System.out.println("value of ticket number thing: " + number);
-			// System.out.println(number);
-
-			if (number != 0) {
-				ticketsQueue.add(number);
-			}
-			if (number == 0) {
-				System.out.println("final waiting time" + minutes);
-				return minutes;
-			}
-
 		}
+//end}
 
-		return -1;
 	}
 }
