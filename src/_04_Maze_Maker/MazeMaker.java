@@ -18,7 +18,7 @@ public class MazeMaker {
         rows = r;
         cols = c;
         maze = new Maze(rows, cols);
-
+        Cell[][] cells = Maze.cells;
         // 1. Pick a random cell along the border and remove its exterior wall.
         //    This will be the starting point. Then select a random cell along
         //    the opposite wall and remove its exterior wall. This will be the
@@ -30,20 +30,28 @@ public class MazeMaker {
         //2 = south
         //3 = west
         
-        wallDirection = randGen.nextInt(4);
-        System.out.println(wallDirection);
-        if(wallDirection == 0) {
-        	oppositeWall = 2;
-        }if(wallDirection == 1) {
-        	oppositeWall = 3;
-        }if(wallDirection == 2) {
-        	oppositeWall = 0;
-        }if(wallDirection == 3) {
-        	oppositeWall = 1;
-        }
-        
+      
         // 2. select a random cell in the maze to start 
         //startCell = cells[0][randGen.nextInt(4)] -> something like this
+//        Cell startCell = cells[0][randGen.nextInt(4)];
+//       
+//        System.out.println(startCell.getRow() +  ", " + startCell.getCol());
+        int random = randGen.nextInt(5);
+        Cell startCell;
+        
+        if(random == 0) {
+        	startCell = cells[0][randGen.nextInt(5)];
+        }if(random == 1) {
+        	startCell = cells[randGen.nextInt(5)][0];
+        }if(random == 2) {
+        	startCell = cells[3][randGen.nextInt(4)];
+        }if(random == 3) {
+        	
+        }
+        
+        
+        //row is 0, so it must be a north border
+        
         
         // 3. call the selectNextPath method with the randomly selected cell
 

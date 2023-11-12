@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+//runnnererrr classss
 public class MazeDisplay extends JPanel{
     private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class MazeDisplay extends JPanel{
     public void paintComponent(Graphics g){
         maze.draw(g);
     }
-
+    
     public static void main(String[] args) {
         MazeDisplay md = new MazeDisplay();
     }
