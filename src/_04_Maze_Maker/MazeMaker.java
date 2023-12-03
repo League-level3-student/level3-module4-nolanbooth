@@ -30,9 +30,11 @@ public class MazeMaker {
 //        Cell startCell = cells[0][randGen.nextInt(4)];
 //       
 //        System.out.println(startCell.getRow() +  ", " + startCell.getCol());
+		
+		//change numbers to variables if want to fix
 		int random = randGen.nextInt(4);
-		Cell startCell;
-		Cell endCell;
+		Cell startCell = maze.cells[0][0];
+		Cell endCell = maze.cells[0][0];
 
 		if (random == 0) {
 			startCell = maze.cells[0][randGen.nextInt(r)];
@@ -55,7 +57,7 @@ public class MazeMaker {
 			startCell.setSouthWall(false);
 			endCell.setNorthWall(false);
 			
-		} else {
+		} if(random == 4) {
 			startCell = maze.cells[randGen.nextInt(r)][4];
 			endCell = maze.cells[randGen.nextInt(r)][0];
 			startCell.setEastWall(false);
@@ -71,7 +73,7 @@ public class MazeMaker {
 		// row is 0, so it must be a north border
 		System.out.println(startCell.getRow() + ", " + startCell.getCol());
 		
-
+		selectNextPath(startCell);
 		// 3. call the selectNextPath method with the randomly selected cell
 		//selectNextPath(startCell);
 		return maze;
@@ -82,39 +84,21 @@ public class MazeMaker {
 		// A. SET currentCell as visited
 		currentCell.setBeenVisited(true);
 		// B. check for unvisited neighbors using the cell
-		int col = currentCell.getCol();
-		int row = currentCell.getRow();
-		boolean rightNeyber = false;
-		boolean leftNeyber = false;
-		boolean topNeyber = false;
-		boolean bottomNeyber = false;
-
-		if (row == 0) {
-			// don't have to check top
-			topNeyber = false;
-			
+		
+		ArrayList<Cell> neybers = getUnvisitedNeighbors(currentCell);
+		
+		if(neybers.size() == 0 && uncheckedCells.size() != 0) {
+			currentCell = uncheckedCells.pop();
+			selectNextPath(currentCell);
+		}if(neybers.size() != 0) {
+		Cell nextCell = neybers.get(randGen.nextInt(neybers.size()));
+		
+		uncheckedCells.push(nextCell);
+		
+		removeWalls(currentCell, nextCell);
+		currentCell = maze.cells[nextCell.getRow()][nextCell.getCol()];
+		selectNextPath(currentCell);
 		}
-		if (row == 4) {
-			// don't have to check bottom
-			bottomNeyber = false;
-		}
-		if (col == 0) {
-			// don't have to check left
-			leftNeyber = false;
-		}
-		if (col == 4) {
-			// don't have to check right
-			rightNeyber = false;
-		}
-
-		
-		
-		
-		
-		
-		// any cells around currentCell that haven't been visited are true booleans
-		// select one at random?
-
 		// C. if has unvisited neighbors,
 
 		// C1. select one at random.
